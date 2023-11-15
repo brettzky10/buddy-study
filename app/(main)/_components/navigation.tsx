@@ -22,13 +22,13 @@ import {
   PopoverTrigger,
   PopoverContent,
 } from "@/components/ui/popover";
-//import { useSearch } from "@/hooks/use-search";
-//import { useSettings } from "@/hooks/use-settings";
+import { useSearch } from "@/hooks/use-search";
+import { useSettings } from "@/hooks/use-settings";
 
 import { UserItem } from "./user-item";
 import { Item } from "./item";
 import { DocumentList } from "./document-list";
-//import { TrashBox } from "./trash-box";
+import { TrashBox } from "./trash-box";
 import { Navbar } from "./navbar";
 
 
@@ -36,12 +36,12 @@ import { Navbar } from "./navbar";
 function Navigation() {
 
     const router = useRouter();
-  //const settings = useSettings();
-  //const search = useSearch();
-  const params = useParams();
-  const pathname = usePathname();
-  const isMobile = useMediaQuery("(max-width: 768px)");
-  const create = useMutation(api.documents.create);
+    const settings = useSettings();
+    const search = useSearch();
+    const params = useParams();
+    const pathname = usePathname();
+    const isMobile = useMediaQuery("(max-width: 768px)");
+    const create = useMutation(api.documents.create);
 
     const isResizingRef = useRef(false);
     const sidebarRef = useRef<ElementRef<"aside">>(null);
@@ -159,7 +159,7 @@ function Navigation() {
       </div>
       <div>
         <UserItem />
-        {/**
+        
         <Item
           label="Search"
           icon={Search}
@@ -170,7 +170,7 @@ function Navigation() {
           label="Settings"
           icon={Settings}
           onClick={settings.onOpen}
-        />*/}
+        />
         <Item
           onClick={handleCreate}
           label="New page"
@@ -192,7 +192,7 @@ function Navigation() {
             className="p-0 w-72"
             side={isMobile ? "bottom" : "right"}
           >
-            {/*<TrashBox />*/}
+            <TrashBox />
           </PopoverContent>
         </Popover>
       </div> 
